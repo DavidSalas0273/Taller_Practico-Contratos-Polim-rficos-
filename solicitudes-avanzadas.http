@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:8080
+@clienteId = REEMPLAZAR_POR_UUID_DE_CLIENTE
+
+### 1. Crear Suite Presidencial - esperado: 201 Created
+POST {{baseUrl}}/api/habitaciones/suites
+Content-Type: application/json
+
+{
+  "numero": "P05-501",
+  "precioPorNoche": 350.0,
+  "capacidadMaxima": 2,
+  "jacuzziPrivado": true,
+  "incluyeMayordomo": true
+}
+
+### 2. Consulta polimórfica: aparecen habitaciones ESTANDAR y SUITE
+GET {{baseUrl}}/api/habitaciones
+Accept: application/json
+
+### 3. Resumen ejecutivo - usar un UUID de cliente existente
+GET {{baseUrl}}/api/clientes/{{clienteId}}/resumen
+Accept: application/json
+
+### 4. PATCH selectivo - el email, estado y penalizaciones deben conservarse
+PATCH {{baseUrl}}/api/clientes/{{clienteId}}
+Content-Type: application/json
+
+{
+  "nombre": "Nuevo Nombre Modificado"
+}

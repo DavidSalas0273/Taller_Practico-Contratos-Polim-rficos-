@@ -62,6 +62,20 @@ public class Cliente {
         return this.activo;
     }
 
+    public void setNombre(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre es obligatorio");
+        }
+        this.nombre = nombre;
+    }
+
+    public void setEmail(String email) {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("El email es obligatorio");
+        }
+        this.email = email;
+    }
+
     public UUID getId() {
         return id;
     }
